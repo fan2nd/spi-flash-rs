@@ -1168,7 +1168,7 @@ impl<'a, A: SpiDevice> Flash<'a, A> {
 /// the relevant erase opcodes and sizes.
 ///
 /// Only single I/O commands are listed.
-#[derive(Copy, Clone, Debug, num_enum::IntoPrimitive)]
+#[derive(Copy, Clone, Debug)]
 #[allow(unused)]
 #[repr(u8)]
 enum Command {
@@ -1222,4 +1222,9 @@ enum Command {
     ReadBlockLock = 0x3D,
     GlobalBlockLock = 0x7E,
     GlobalBlockUnlock = 0x98,
+}
+impl Into<u8> for Command{
+    fn into(self) -> u8 {
+        self as u8
+    }
 }
